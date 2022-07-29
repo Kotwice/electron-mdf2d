@@ -1,0 +1,21 @@
+{
+  "name": "electronmdf2d",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.2.0",
+    "electon": "^0.0.1-security",
+    "electron": "^19.0.3",
+    "jquery": "^3.6.0",
+    "plotly.js-dist": "^2.13.2",
+    "socket.io": "^4.5.1"
+  },
+  "description": ""
+}
