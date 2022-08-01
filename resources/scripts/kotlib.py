@@ -9,7 +9,7 @@ import numpy as np
 
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-
+from numba import jit
 import json, socketio
 
 def fig2json(x, y, t, u, v, p):
@@ -69,6 +69,7 @@ class NumpyEncoder(json.JSONEncoder):
             return obj.tolist()
         return json.JSONEncoder.default(self, obj)
 
+@jit
 def global_system (argument, parameters):
 
     x = parameters['x']
@@ -182,6 +183,7 @@ def global_system (argument, parameters):
 
     return result
 
+@jit
 def jacobian_system(argument, parameters):
 
     x = parameters['x']

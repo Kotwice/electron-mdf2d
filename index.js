@@ -2,14 +2,21 @@ const {app, BrowserWindow} = require('electron')
 
 const io = require('socket.io')(4000)
 
-const fs = require('fs')
+let os = require('os');
+
+app.disableHardwareAcceleration()
 
 var spawn = require("child_process").spawn
 
 io.on('connection', client => {
 
 	client.on('calculate', (event) => {
-		let tast = spawn('python', ["./resources/scripts/calculate_task.py", JSON.stringify(event)])
+		let tast = spawn('python', ["./resources/scripts/calculate_test.py", JSON.stringify(event)])
+		// let tast = spawn('python', ["./resources/scripts/calculate_task.py", JSON.stringify(event)])
+
+		tast.stderr.on('data', data => {
+			console.error(`stderr: ${data}`);
+		});
 	})
 
 	client.on('figure-process', data => {
@@ -19,6 +26,11 @@ io.on('connection', client => {
 	client.on('figure-result', data => {
 		client.broadcast.emit('plot-figure-result', JSON.parse(data))
 	})
+
+	// client.on('get-state', () => {
+	// 	console.log(os.cpus())
+	// 	client.broadcast.emit('res-state', {cpu: os.cpus()})
+	// })
 
 });
 

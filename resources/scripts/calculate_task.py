@@ -1,6 +1,6 @@
 from numpy import linspace, zeros, meshgrid, diff, ones, arange, array, append, reshape, concatenate, stack, sqrt, split, array_split, sum, abs
 from scipy.linalg import solve as linsolve
-
+from numba import jit
 import sys, json, socketio, kotlib, sys
 
 if __name__ == '__main__':
@@ -191,6 +191,7 @@ if __name__ == '__main__':
     parameters['bc_p_k22'] = bc_p_k22
     parameters['bc_p_k3'] = bc_p_k3
 
+    # @jit
     def newton (func, initial, jacob, options):
 
         tolerance, iteration_convergence, iteration_calculation = 0, 0, 0

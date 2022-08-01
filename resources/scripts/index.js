@@ -89,4 +89,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
         Plotly.newPlot('figure-result', figure['data'], figure['layout'], figure['frames'])
     })
 
+    // setInterval(() => {
+    //     socket.emit('get-state')
+    // }, 2000)
+
+    // socket.on('res-state', event => {
+    //     console.log(event['cpu'])
+    //     $('#progress-cup').attr('width', event['cpu'])
+    // })
+
 })
